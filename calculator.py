@@ -61,7 +61,7 @@ def add(*args):
 def subtract(*args):
     try:
         args = list(map(int, args))
-        value = args.pop()
+        value = args.pop(0)
         if args:
             for item in args:
                 value -= item
@@ -73,7 +73,7 @@ def subtract(*args):
 def multiply(*args):
     try:
         args = list(map(int, args))
-        value = args.pop()
+        value = args.pop(0)
         if args:
             for item in args:
                 value *= item
@@ -85,7 +85,7 @@ def multiply(*args):
 def divide(*args):
     try:
         args = list(map(int, args))
-        value = args.pop()
+        value = args.pop(0)
         if args:
             for item in args:
                 value /= item
@@ -95,7 +95,13 @@ def divide(*args):
     return body
 
 def intro(*args):
-    return 'this is the intro'
+    body = """
+    <h1>How to use this</h1>
+    <p>This WSGI calculator has 4 functions: add, subtract, multiply, and divide.</p>
+    <p>To use, enter the function and the integers you want it to work on in the address bar separated by slashes. For example:</p>
+    <p> http://localhost:8080/add/2/2</p>
+    """
+    return body
 
 def resolve_path(path):
     """
