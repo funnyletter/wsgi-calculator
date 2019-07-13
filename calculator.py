@@ -47,17 +47,37 @@ def add(*args):
 
     # TODO: Fill sum with the correct value, based on the
     # args provided.
-    sum = "0"
-
-    return sum
+    sum = 0
+    try:
+        for item in args:
+            sum += int(item)
+    except ValueError:
+        body = 'Please enter only integers as arguments.'
+    body = str(sum)
+    return body
 
 # TODO: Add functions for handling more arithmetic operations.
 
 def subtract(*args):
-    pass
+    try:
+        args = list(map(int, args))
+        value = int(args.pop())
+        if args:
+            for item in args:
+                value -= int(item)
+        body = str(value)
+    except ValueError:
+        body = 'Please enter only integers as arguments.'
+    return body
 
 def multiply(*args):
-    pass
+    return 'this is multiply'
+
+def divide(*args):
+    return 'this is divide'
+
+def intro(*args):
+    return 'this is the intro'
 
 def resolve_path(path):
     """
@@ -69,17 +89,20 @@ def resolve_path(path):
     # examples provide the correct *syntax*, but you should
     # determine the actual values of func and args using the
     # path.
-    func_dict = {
+    funcs = {
         'add': add,
         'subtract': subtract,
         'multiply': multiply,
         'divide': divide,
         '': intro
         }
-    args = path.trim('/').split('/')
-    func = args[0]
+    args = path.strip('/').split('/')
+    try:
+        func = funcs[args[0]]
+    except KeyError:
+        raise NameError
     args = args[1:]
-    
+
     return func, args
 
 def application(environ, start_response):
