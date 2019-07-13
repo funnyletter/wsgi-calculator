@@ -51,9 +51,9 @@ def add(*args):
     try:
         for item in args:
             sum += int(item)
+            body = str(sum)
     except ValueError:
         body = 'Please enter only integers as arguments.'
-    body = str(sum)
     return body
 
 # TODO: Add functions for handling more arithmetic operations.
@@ -61,20 +61,38 @@ def add(*args):
 def subtract(*args):
     try:
         args = list(map(int, args))
-        value = int(args.pop())
+        value = args.pop()
         if args:
             for item in args:
-                value -= int(item)
+                value -= item
         body = str(value)
     except ValueError:
         body = 'Please enter only integers as arguments.'
     return body
 
 def multiply(*args):
-    return 'this is multiply'
+    try:
+        args = list(map(int, args))
+        value = args.pop()
+        if args:
+            for item in args:
+                value *= item
+        body = str(value)
+    except ValueError:
+        body = 'Please enter only integers as arguments.'
+    return body
 
 def divide(*args):
-    return 'this is divide'
+    try:
+        args = list(map(int, args))
+        value = args.pop()
+        if args:
+            for item in args:
+                value /= item
+        body = str(value)
+    except ValueError:
+        body = 'Please enter only integers as arguments.'
+    return body
 
 def intro(*args):
     return 'this is the intro'
