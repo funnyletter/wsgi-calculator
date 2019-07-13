@@ -148,6 +148,9 @@ def application(environ, start_response):
     except NameError:
         status = '404 Not Found'
         body = '<h1>Not Found</h1>'
+    except ZeroDivisionError:
+        status = '500 Internal Server Error'
+        body = "<h1>You divided by zero. Don't do that.</h1>"
     except Exception:
         status = '500 Internal Server Error'
         body = '<h1>Internal Server Error</h1>'
